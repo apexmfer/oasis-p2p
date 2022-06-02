@@ -49,12 +49,12 @@ export default class OasisServer {
 
     async init(){
 
-       let fetchFilesLoop = new SingletonLoopMethod( this.fetchTrackedFiles, 5000 );
-
+       let fetchFilesLoop = new SingletonLoopMethod( this.fetchTrackedFiles.bind(this)  );
+       fetchFilesLoop.start(4000)
     }
 
     async fetchTrackedFiles(){
-
+  
         let filesArray = this.oasisManifest.trackedFiles
 
         await this.ipfsSubsystem.fetchFiles( filesArray )

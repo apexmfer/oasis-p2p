@@ -16,19 +16,17 @@ export default class SingletonLoopMethod {
     executing: boolean
 
 
-    constructor(public callback:any, public args:any){
+    constructor(public callback:any, public args?:any){
         this.executing = false 
         this.registerMethod(callback,args)
     }
 
 
     //callback should be a promise 
-    registerMethod(  callback:any, args:any ){
-        //console.log('typeof callback', typeof callback)
-        //if(typeof callback!='Promise') throw 'Must be a promise'
-
+    registerMethod(  callback:any, args?:any[] ){
+        
         this.callback = callback;
-        this.args=args;
+        this.args=args ? args : [];
     } 
 
     start(delayMs:number){
@@ -54,7 +52,8 @@ export default class SingletonLoopMethod {
 
        
         this.executing=true
-        await this.callback(...this.args)
+        let args = this.args ? this.args : []
+        await this.callback(...args)
         this.executing=false
     }
 

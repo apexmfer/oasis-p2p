@@ -5,6 +5,7 @@ import ExtensibleDB from "extensible-mongoose";
 import { TrackableFile } from './oasis-server';
 import fs from 'fs'
 import path from 'path'
+import SingletonLoopMethod from './singleton-loop-method';
 export default class IpfsSubsystem {
  
     client 
@@ -17,10 +18,11 @@ export default class IpfsSubsystem {
 
    
 
-    async init(){
+    async init(){ 
         
-      
-       await this.publishAllCacheFiles()
+        let publishFilesLoop = new SingletonLoopMethod( this.publishAllCacheFiles.bind(this)  );
+        publishFilesLoop.start(15000)
+        
     }
 
 
@@ -29,9 +31,19 @@ export default class IpfsSubsystem {
 
         let path = './cache'
 
-        for await (const file of this.client.addAll(globSource(path, '**/*'))) {
-            console.log(file)
+
+        let allCacheFiles = fs.readdirSync(path)
+
+        if(allCacheFiles.length == 0 ){
+            return
         }
+
+
+        for await (const file of this.client.addAll(globSource(path, '**/*'))) {
+            //console.log('published file to ipfs: ',file)
+        }
+
+
 
     }
 

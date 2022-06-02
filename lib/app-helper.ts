@@ -4,8 +4,8 @@
 
 const NODE_ENV = process.env.NODE_ENV
 
-let manifestData = require('./package.json')
-let serverConfig = require('./config/server-config.json')
+let manifestData = require('../package.json')
+let serverConfig = require('../config/server-config.json')
 
 export interface ServerConfig {
 
