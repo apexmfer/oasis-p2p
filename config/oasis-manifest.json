@@ -22,7 +22,7 @@
     "trustedPeerAddresses":[
 
     ],
-    "onlyDownloadFromTrustedAddresses":true 
+    "onlyDownloadUntrackedFromTrustedAddresses":true 
 
 
 

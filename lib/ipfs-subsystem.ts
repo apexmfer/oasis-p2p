@@ -103,7 +103,7 @@ export default class IpfsSubsystem {
         writeStream.close()       
  
   
-        console.log('fin'   ) 
+       // console.log('fin'   ) 
 
     }
 
