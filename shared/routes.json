@@ -1,0 +1,5 @@
+[
+    {"type":"get","uri":"/api/getServerMetadata","method":"getServerMetadata","controller":"peer"}
+   
+
+]

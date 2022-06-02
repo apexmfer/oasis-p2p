@@ -1,6 +1,8 @@
 {
+    "oasisServerPort": 8000,
     "connectionURL":"",
-    "ethereumPublicAddress":""
+    "ethereumPublicAddress":"",
+    "ethereumPrivateKey":""
 
 
 }

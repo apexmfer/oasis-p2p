@@ -1,13 +1,28 @@
 {   
-    "oasisName":"testOasis",
+    "oasisName":"firstOasis",
+    "manifestVersion":"0.10",
     "rootNodes":[
         { "connectionURL":""  }
     ],
+    "validFileTypes":[
+        ".txt",
+        ".wav",
+        ".mp3",
+        ".adg",
+        ".jpeg",
+        ".png"
+    ],
+    "maxFileSizeBytes": "10000000",
     "trackedFiles":[
+        { "cidPath":"QmcvgYQtwErvV5C27ozRahqDQwjruU9VpbMwULkBaPoC9X" }
 
 
 
-    ]
+    ],
+    "trustedPeerAddresses":[
+
+    ],
+    "onlyDownloadFromTrustedAddresses":true 
 
 
 
