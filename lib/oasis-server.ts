@@ -30,7 +30,10 @@ export interface OasisManifest {
 
 
 export interface TrackableFile {
-    cidPath: string 
+    cidPath: string ,
+    fileName?: string,
+    expectedExtension?: string
+   
 
 }
 

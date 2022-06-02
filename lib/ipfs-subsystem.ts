@@ -74,51 +74,24 @@ export default class IpfsSubsystem {
 
         let ipfsPath = file.cidPath
  
-        let fetchedFileIterable = this.client.cat(ipfsPath, {})
+        let fetchedFileIterable = this.client.cat(ipfsPath, {})  
 
-        //this.client.cat
-        
-        console.log('fetchedFile',fetchedFileIterable)
-
-
-        let sampleFile = fs.readFileSync('./cache/flyz1.png')
-        console.log('sampleFile',sampleFile)
-
-      // let sampleFileReadStream = fs.createReadStream( fetchedFileIterable )
-
-
-        let extension = 'png'  // get this somehow - metadata files ? 
- 
+        let extension = file.expectedExtension ? file.expectedExtension : 'png'  // get this somehow - metadata files ?  
 
         var writeStream = fs.createWriteStream(`./cache/${ipfsPath}.${extension}`);
         writeStream.on('error', function (err) {
             console.log(err);
-          });
- 
-          
+        });
          
          
         for await (const part of fetchedFileIterable) {
- 
-            //contents.push(part)
-
-            writeStream.write(part)
-            //console.log(part)
+            writeStream.write(part) 
         }
 
-        writeStream.close()
-
-         
-
-        // fs.writeFileSync(`./cache/${ipfsPath}.${extension}`, buffer)
-
+        writeStream.close()       
+ 
   
-          console.log('fin'   )
- 
-
-       
- 
-       
+        console.log('fin'   ) 
 
     }
 
