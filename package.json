@@ -1,8 +1,8 @@
 {
   "name": "oasis-p2p",
-  "version": "1.0.0",
-  "description": "A mesh network that shares files based on a manifest file ",
-  "main": "index.js",
+  "version": "0.10.0",
+  "description": "A mesh network that shares files based on a community manifest file ",
+  "main": "dist/index.js",
   "scripts": {
     "server": "npx ts-node index.ts",
     "test": "NODE_ENV=test TS_NODE_PROJECT=\"tsconfig.testing.json\" mocha --require ts-node/register 'test/**/*.ts' --timeout 25000",
