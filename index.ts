@@ -2,6 +2,8 @@
  
 
 import ExtensibleDB from "extensible-mongoose";
+import IpfsSubsystem from "./lib/ipfs-subsystem";
+import PeerServer from "./lib/peer-server";
 
 let envmode = process.env.NODE_ENV ? process.env.NODE_ENV : 'development'
  
@@ -13,6 +15,7 @@ async function start(){
 
 
   let ipfsSubsystem = new IpfsSubsystem( mongoDB )
+  await ipfsSubsystem.init()
 
   
   let peerServer = new PeerServer( ipfsSubsystem, mongoDB )

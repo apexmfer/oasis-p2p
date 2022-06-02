@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
       "target": "es6",
+      "skipLibCheck": true,
       "resolveJsonModule": true,
       "lib": ["ES6","dom"],
       "module": "commonjs",
@@ -9,6 +10,9 @@
       "strict": true,
       "outDir": "dist",
       "sourceMap": true 
-    }
+    },
+    "exclude": [
+      "node_modules"
+    ] 
   }
   
