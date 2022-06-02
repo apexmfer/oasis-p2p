@@ -2,6 +2,8 @@
 
 
 import ExtensibleDB from "extensible-mongoose";
+import IpfsSubsystem from "./ipfs-subsystem";
+import SingletonLoopMethod from "./singleton-loop-method";
  
 
 
@@ -13,7 +15,7 @@ import ExtensibleDB from "extensible-mongoose";
     Download all of the files in the manifest using IPFS 
 
 */
-
+var cron = require('node-cron');
 
 
 
@@ -27,18 +29,32 @@ export interface OasisManifest {
 }
 
 
+export interface TrackableFile {
+    cidPath: string 
 
+}
 
 export default class OasisServer {
     
-    
 
-    constructor(public oasisManifest:OasisManifest,  public mongoDB:ExtensibleDB){
- 
-    }
+
+    constructor(
+        public oasisManifest:OasisManifest,
+        public ipfsSubsystem:IpfsSubsystem,
+        public mongoDB:ExtensibleDB
+    ){}
 
     async init(){
-        
+
+       let fetchFilesLoop = new SingletonLoopMethod( this.fetchTrackedFiles, 5000 );
+
+    }
+
+    async fetchTrackedFiles(){
+
+        let filesArray = this.oasisManifest.trackedFiles
+
+        await this.ipfsSubsystem.fetchFiles( filesArray )
 
     }
 

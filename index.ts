@@ -42,7 +42,7 @@ async function start(){
 
  
   
-  let oasisServer = new OasisServer( oasisManifest,  mongoDB )
+  let oasisServer = new OasisServer( oasisManifest, ipfsSubsystem ,  mongoDB )
   await oasisServer.init() 
 
 
