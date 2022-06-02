@@ -27,6 +27,14 @@ describe('Oasis p2p', () => {
     
 
   })
+
+  after(async () => {
+
+    
+    await mongoDB.disconnect()  
+
+  })
+  
   
   it('can check for cached file', async () => {
 

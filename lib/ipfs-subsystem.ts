@@ -15,6 +15,8 @@ export default class IpfsSubsystem {
         this.client = create()
     }
 
+   
+
     async init(){
         
       
@@ -77,17 +79,35 @@ export default class IpfsSubsystem {
         console.log('fetchedFile',fetchedFileIterable)
 
 
+      //  let sampleFileReadStream = fs.createReadStream('./cache/flyz1.png')
+       // console.log('sampleFile',sampleFile)
 
-        var writeStream = fs.createWriteStream(`./cache/${ipfsPath}`, 'utf8');
-   
+       let sampleFileReadStream = fs.createReadStream( fetchedFileIterable )
 
-        for await (const part of fetchedFileIterable) {
-            writeStream.write(part)
-        }
 
-        writeStream.close()
+        let extension = 'png'  // get this somehow - metadata files ? 
+
+
+        var writeStream = fs.createWriteStream(`./cache/${ipfsPath}.${extension}`);
+        writeStream.on('error', function (err) {
+            console.log(err);
+          });
+
+
+        sampleFileReadStream.on('data', (chunk) => {
+            writeStream.write(chunk)
+        })
+
+        sampleFileReadStream.on('close', ( ) => {
+            writeStream.close()
+            console.log('fin')
+
+        })
  
 
+       
+ 
+       
 
     }
 
